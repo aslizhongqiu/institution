@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * @Description DAO基础接口
- * @Author chenlinghong
+ * @Author lizhongqiu
  * @Date 2019/4/23 22:33
  * @Version V1.0
  */

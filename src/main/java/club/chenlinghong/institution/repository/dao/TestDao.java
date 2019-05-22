@@ -4,7 +4,7 @@ import club.chenlinghong.institution.repository.domain.TestDomain;
 
 /**
  * @Description 测试DAO
- * @Author chenlinghong
+ * @Author lizhongqiu
  * @Date 2019/5/21 20:27
  * @Version V1.0
  */

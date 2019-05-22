@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @Description 用户类型
+ * @Description 课程分类
  * @Author  lizhongqiu
  * @Date 2019/5/22 20:05
  * @Version V1.0
@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserType extends BaseDomain {
+public class CourseType extends BaseDomain {
 
     private static final long serialVersionUID = 207438013579173602L;
 

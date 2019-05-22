@@ -4,8 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 /**
- * @Description 用户类型
+ * @Description 班级类型
  * @Author  lizhongqiu
  * @Date 2019/5/22 20:05
  * @Version V1.0
@@ -13,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserType extends BaseDomain {
+public class ClassType extends BaseDomain {
 
     private static final long serialVersionUID = 207438013579173602L;
 
