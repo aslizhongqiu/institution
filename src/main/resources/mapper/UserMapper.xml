@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="club.chenlinghong.institution.repository.dao.UserDao">
+
+    <resultMap id="BaseResultMap" type="club.chenlinghong.institution.repository.domain.User">
+        <id column="id" property="id" jdbcType="INTEGER" javaType="Long"/>
+        <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" javaType="Date"/>
+        <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" javaType="Date"/>
+        <result column="deleted" property="deleted" jdbcType="VARCHAR" javaType="Integer"/>
+        <result column="name" property="name" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="password" property="password" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="type_id" property="typeId" jdbcType="INTEGER" javaType="int"/>
+        <association property="userType" column="type_id"
+                     javaType="club.chenlinghong.institution.repository.domain.UserType"
+                     select="club.chenlinghong.institution.repository.dao.UserTypeDao.getById">
+        </association>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        gmt_create, gmt_modified, deleted, `name`, password, type_id
+    </sql>
+
+    <sql id="column_list">
+        `id`, <include refid="Base_Column_List"></include>
+    </sql>
+
+    <sql id="default_value">
+        current_timestamp , current_timestamp , "0"
+    </sql>
+
+    <insert id="insert" parameterType="club.chenlinghong.institution.repository.domain.User">
+        <selectKey keyProperty="id" order="AFTER" resultType="long">
+            SELECT last_insert_id()
+        </selectKey>
+        INSERT into
+        user(<include refid="Base_Column_List"></include>)
+        values(<include refid="default_value"></include>, #{name}, #{password}, #{typeId})
+    </insert>
+
+    <update id="deleteById" parameterType="int">
+        update user
+        set deleted = '1'
+        where id = #{id}
+    </update>
+
+    <select id="getById" parameterType="Integer" resultMap="BaseResultMap">
+        SELECT
+        <include refid="column_list"/>
+        FROM
+        user
+        WHERE
+        id=#{id} and deleted = "0"
+    </select>
+
+    <select id="listAll" resultMap="BaseResultMap">
+        SELECT
+        <include refid="column_list"/>
+        FROM
+        user
+        where deleted = "0"
+        order by id desc
+        <choose>
+            <when test="offset != null and rows != null">
+                limit #{offset},#{rows}
+            </when>
+            <otherwise>
+                limit 0,10
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="count" resultType="int">
+        SELECT
+        count(*)
+        FROM
+        user
+        where deleted = "0"
+    </select>
+
+    <update id="update" parameterType="club.chenlinghong.institution.repository.domain.User">
+        update user
+        set `name`       = #{name},
+            gmt_modified = current_timestamp
+        where id = #{id}
+    </update>
+
+</mapper>
