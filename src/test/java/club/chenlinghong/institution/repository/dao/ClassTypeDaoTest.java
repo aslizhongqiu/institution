@@ -1,34 +1,26 @@
 package club.chenlinghong.institution.repository.dao;
 
-import club.chenlinghong.institution.repository.domain.UserType;
+import club.chenlinghong.institution.repository.domain.ClassType;
+import club.chenlinghong.institution.repository.domain.CourseType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.List;
-
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UserTypeDaoTest {
+public class ClassTypeDaoTest {
 
     @Autowired
-    private UserTypeDao typeDao;
+    ClassTypeDao classTypeDao;
 
     @Test
     public void insert() {
-        UserType type = new UserType("管理员");
-        int result = typeDao.insert(type);
+        ClassType classType=new ClassType("精品班");
+        int result = classTypeDao.insert(classType);
         assertEquals(1, result);
     }
-
-    @Test
-    public void listAll() {
-        List<UserType> typeList = typeDao.listAll(0, 10);
-        System.out.println(typeList);
-    }
-
 }

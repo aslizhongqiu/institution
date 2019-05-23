@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="club.chenlinghong.institution.repository.dao.CourseDao">
+
+    <resultMap id="BaseResultMap" type="club.chenlinghong.institution.repository.domain.Course">
+        <id column="id" property="id" jdbcType="INTEGER" javaType="Long"/>
+        <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" javaType="Date"/>
+        <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" javaType="Date"/>
+        <result column="deleted" property="deleted" jdbcType="VARCHAR" javaType="Integer"/>
+        <result column="course_type" property="courseTypeId" jdbcType="INTEGER" javaType="int"/>
+        <result column="class_type" property="classTypeId" jdbcType="INTEGER" javaType="int"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER" javaType="int"/>
+        <result column="time" property="time" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="address" property="address" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="price" property="price" jdbcType="INTEGER" javaType="int"/>
+        <result column="number" property="number" jdbcType="INTEGER" javaType="int"/>
+        <association property="courseType" column="course_type"
+                     javaType="club.chenlinghong.institution.repository.domain.CourseType"
+                     select="club.chenlinghong.institution.repository.dao.CourseTypeDao.getById">
+        </association>
+        <association property="classType" column="class_type"
+                     javaType="club.chenlinghong.institution.repository.domain.ClassType"
+                     select="club.chenlinghong.institution.repository.dao.ClassTypeDao.getById">
+        </association>
+        <association property="user" column="user_id"
+                     javaType="club.chenlinghong.institution.repository.domain.User"
+                     select="club.chenlinghong.institution.repository.dao.UserDao.getById">
+        </association>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        gmt_create, gmt_modified, deleted, course_type, class_type,user_id,`time`,address,price,`number`
+    </sql>
+
+    <sql id="column_list">
+        `id`, <include refid="Base_Column_List"></include>
+    </sql>
+
+    <sql id="default_value">
+        current_timestamp , current_timestamp , "0"
+    </sql>
+
+    <insert id="insert" parameterType="club.chenlinghong.institution.repository.domain.Course">
+        <selectKey keyProperty="id" order="AFTER" resultType="long">
+            SELECT last_insert_id()
+        </selectKey>
+        INSERT into
+        course(<include refid="Base_Column_List"></include>)
+        values(<include refid="default_value"></include>, #{courseTypeId}, #{classTypeId}, #{userId},#{time},#{address},#{price},#{number})
+    </insert>
+
+    <update id="deleteById" parameterType="int">
+        update course
+        set deleted = '1'
+        where id = #{id}
+    </update>
+
+    <select id="getById" parameterType="Integer" resultMap="BaseResultMap">
+        SELECT
+        <include refid="column_list"/>
+        FROM
+        course
+        WHERE
+        id=#{id} and deleted = "0"
+    </select>
+
+    <select id="listAll" resultMap="BaseResultMap">
+        SELECT
+        <include refid="column_list"/>
+        FROM
+        course
+        where deleted = "0"
+        order by id desc
+        <choose>
+            <when test="offset != null and rows != null">
+                limit #{offset},#{rows}
+            </when>
+            <otherwise>
+                limit 0,10
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="count" resultType="int">
+        SELECT
+        count(*)
+        FROM
+        course
+        where deleted = "0"
+    </select>
+
+    <update id="update" parameterType="club.chenlinghong.institution.repository.domain.User">
+        update course
+        set
+            gmt_modified = current_timestamp,
+            course_type = #{courseTypeId},
+            class_type = #{classTypeId},
+            user_id = #{userId},
+            `time` = #{time},
+            address = #{address},
+            price = #{price},
+            `number` = #{number}
+        where id = #{id}
+    </update>
+
+</mapper>
