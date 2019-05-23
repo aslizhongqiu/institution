@@ -23,7 +23,7 @@ public interface IBaseService<T> {
      * @param id
      * @return
      */
-    int deleteById(long id);
+    int deleteById(int id);
 
     /**
      * 根据ID获取
@@ -31,7 +31,7 @@ public interface IBaseService<T> {
      * @param id
      * @return
      */
-    T getById(long id);
+    T getById(int id);
 
     /**
      * 获取所有
@@ -40,7 +40,7 @@ public interface IBaseService<T> {
      * @param pageSize
      * @return
      */
-    PageDto<T> listAll(long pageNo, long pageSize);
+    PageDto<T> listAll(int pageNo, int pageSize);
 
     /**
      * 更新

@@ -26,17 +26,17 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public int deleteById(long id) {
+    public int deleteById(int id) {
         return courseDao.deleteById(id);
     }
 
     @Override
-    public Course getById(long id) {
+    public Course getById(int id) {
         return courseDao.getById(id);
     }
 
     @Override
-    public PageDto<Course> listAll(long pageNo, long pageSize) {
+    public PageDto<Course> listAll(int pageNo, int pageSize) {
         //TODO
         return null;
     }

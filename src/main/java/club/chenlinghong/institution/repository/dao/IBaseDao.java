@@ -27,7 +27,7 @@ public interface IBaseDao<T> {
      * @param id
      * @return
      */
-    int deleteById(long id);
+    int deleteById(int id);
 
     /**
      * 根据ID获取
@@ -35,7 +35,7 @@ public interface IBaseDao<T> {
      * @param id
      * @return
      */
-    T getById(long id);
+    T getById(int id);
 
     /**
      * 分页获取
@@ -44,7 +44,7 @@ public interface IBaseDao<T> {
      * @param rows   查询行数
      * @return
      */
-    List<T> listAll(@Param("offset") long offset, @Param("rows") long rows);
+    List<T> listAll(@Param("offset") int offset, @Param("rows") int rows);
 
     /**
      * 获取总记录数

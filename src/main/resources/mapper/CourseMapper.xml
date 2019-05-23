@@ -5,7 +5,7 @@
 <mapper namespace="club.chenlinghong.institution.repository.dao.CourseDao">
 
     <resultMap id="BaseResultMap" type="club.chenlinghong.institution.repository.domain.Course">
-        <id column="id" property="id" jdbcType="INTEGER" javaType="Long"/>
+        <id column="id" property="id" jdbcType="INTEGER" javaType="int"/>
         <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" javaType="Date"/>
         <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" javaType="Date"/>
         <result column="deleted" property="deleted" jdbcType="VARCHAR" javaType="Integer"/>
@@ -43,7 +43,7 @@
     </sql>
 
     <insert id="insert" parameterType="club.chenlinghong.institution.repository.domain.Course">
-        <selectKey keyProperty="id" order="AFTER" resultType="long">
+        <selectKey keyProperty="id" order="AFTER" resultType="int">
             SELECT last_insert_id()
         </selectKey>
         INSERT into

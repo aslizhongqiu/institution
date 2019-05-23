@@ -30,17 +30,17 @@ public class TestServiceImpl implements TestService {
     }
 
     @Override
-    public int deleteById(long id) {
+    public int deleteById(int id) {
         return 0;
     }
 
     @Override
-    public TestDomain getById(long id) {
+    public TestDomain getById(int id) {
         return null;
     }
 
     @Override
-    public PageDto<TestDomain> listAll(long pageNo, long pageSize) {
+    public PageDto<TestDomain> listAll(int pageNo, int pageSize) {
         List<TestDomain> domainList = testDao.listAll((pageNo - 1) * pageSize, pageSize);
         int totalCount = 0;
         if (domainList != null && domainList.size() > 0) {

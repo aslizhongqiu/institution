@@ -21,7 +21,7 @@ public class UserDaoTest {
     @Test
     public void insert() {
         User user = new User();
-        user.setName("test");
+        user.setName("李中秋");
         user.setPassword("123456");
         user.setTypeId(520);
         int result = userDao.insert(user);
