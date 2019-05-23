@@ -4,13 +4,17 @@ import club.chenlinghong.institution.common.PageDto;
 import club.chenlinghong.institution.repository.dao.CourseDao;
 import club.chenlinghong.institution.repository.domain.Course;
 import club.chenlinghong.institution.service.CourseService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * @Auther: lizhongqiu
  * @Date: 2019/5/22 22:41
  * @Description:
  */
+@Slf4j
+@Service
 public class CourseServiceImpl implements CourseService {
 
     @Autowired
@@ -18,7 +22,6 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public int insert(Course course) {
-
         return courseDao.insert(course);
     }
 

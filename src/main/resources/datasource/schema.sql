@@ -123,3 +123,17 @@ create table if not exists `settlement`(
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB AUTO_INCREMENT = 520 DEFAULT CHARSET = utf8mb4 COMMENT = '结算表';
 
+--为表添加外键
+alter table `user` add constraint FK_USER foreign key(type_id) REFERENCES user_type(id);
+alter table course add constraint FK_COUSER_COURSE foreign key(course_type) REFERENCES course_type(id);
+alter table course add constraint FK_COUSER_CLASS foreign key(class_type) REFERENCES class_type(id);
+alter table course add constraint FK_COUSER_USER foreign key(user_id) REFERENCES user(id);
+alter table advance add constraint FK_ADVANCE_COURSE foreign key(course_id) REFERENCES course(id);
+alter table advance add constraint FK_ADVANCE_USER foreign key(user_id) REFERENCES user(id);
+alter table present add constraint FK_PRESENT_COURSE foreign key(course_id) REFERENCES course(id);
+alter table present add constraint FK_PRESENT_USER foreign key(user_id) REFERENCES user(id);
+alter table `leave` add constraint FK_LEAVE_COURSE foreign key(course_id) REFERENCES course(id);
+alter table `leave` add constraint FK_LEAVE_USER foreign key(user_id) REFERENCES user(id);
+alter table settlement add constraint FK_SETTLEMENT_COURSE foreign key(course_id) REFERENCES course(id);
+alter table settlement add constraint FK_SETTLEMENT_USER foreign key(user_id) REFERENCES user(id);
+
