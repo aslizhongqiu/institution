@@ -105,4 +105,21 @@
         where id = #{id}
     </update>
 
+    <select id="getByTeacherId" parameterType="INTEGER" resultMap="BaseResultMap">
+        SELECT
+        <include refid="column_list"/>
+        FROM
+        course
+        WHERE
+        user_Id=#{userId} and deleted = "0"
+    </select>
+    
+    <select id="teacherTotal" parameterType="INTEGER" resultType="int">
+        SELECT
+        count(*)
+        FROM
+        course
+        where user_id=#{userId} and deleted = "0"
+    </select>
+
 </mapper>

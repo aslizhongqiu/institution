@@ -67,4 +67,14 @@ public class CourseController {
         return ResultUtil.success();
     }
 
+    /**
+     * 根据老师ID获取课程信息
+     * @param userId
+     * @return
+     */
+    @GetMapping("/teacher")
+    public ResultVo listByTeacher(@RequestParam(value = "userId") int userId){
+        return ResultUtil.success(courseService.getByTeacherId(userId));
+    }
+
 }

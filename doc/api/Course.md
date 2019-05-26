@@ -75,6 +75,65 @@
         "data": null
     }
     
+#### 三、根据老师Id获取老师在上的所有课程信息
+
+     GET /institution/course/course/{id}
+
+参数：
+
+     userId   [int]:老师id   【必填】
+     
+返回：
+
+    {
+        "code": 0,
+        "msg": "请求成功",
+        "data": {
+            "data": [
+                {
+                    "id": 520,
+                    "gmtCreate": "2019-05-23T07:49:00.000+0000",
+                    "gmtModified": "2019-05-23T07:49:00.000+0000",
+                    "courseTypeId": 520,
+                    "courseType": {
+                        "id": 520,
+                        "gmtCreate": "2019-05-22T14:32:10.000+0000",
+                        "gmtModified": "2019-05-22T14:32:10.000+0000",
+                        "name": "语文"
+                    },
+                    "classTypeId": 520,
+                    "classType": {
+                        "id": 520,
+                        "gmtCreate": "2019-05-22T14:38:12.000+0000",
+                        "gmtModified": "2019-05-22T14:38:12.000+0000",
+                        "name": "实验班"
+                    },
+                    "userId": 520,
+                    "user": {
+                        "id": 520,
+                        "gmtCreate": "2019-05-23T07:48:24.000+0000",
+                        "gmtModified": "2019-05-23T07:48:24.000+0000",
+                        "name": "李中秋",
+                        "password": "123456",
+                        "typeId": 520,
+                        "userType": {
+                            "id": 520,
+                            "gmtCreate": "2019-05-22T14:25:13.000+0000",
+                            "gmtModified": "2019-05-22T14:25:13.000+0000",
+                            "name": "老师"
+                        }
+                    },
+                    "time": "周六10:00",
+                    "address": "保利新天地",
+                    "price": 120,
+                    "number": 50
+                }
+            ],
+            "pageNo": 1,
+            "pageSize": 10,
+            "totalCount": 1
+        }
+    }
     
      
  
