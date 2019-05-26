@@ -1,7 +1,13 @@
 package club.chenlinghong.institution.service;
 
+
 import club.chenlinghong.institution.common.PageDto;
+
+import club.chenlinghong.institution.api.vo.PresentVO;
+
 import club.chenlinghong.institution.repository.domain.Present;
+
+import java.util.List;
 
 /**
  * @Auther: lizhongqiu
@@ -11,10 +17,18 @@ import club.chenlinghong.institution.repository.domain.Present;
 public interface PresentService extends IBaseService<Present> {
 
     /**
+
      * 获取考勤列表
      *
      * @param courseId
      * @return
      */
     PageDto listByCourse(int courseId);
+
+     * 根据用户id获取考勤详情
+     * @param userId
+     * @return
+     */
+    List<PresentVO> listByUserId(int userId);
+
 }

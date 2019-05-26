@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -49,6 +50,7 @@ public class PresentController {
     }
 
     /**
+
      * 获取该课程的考勤记录
      *
      * @param courseId
@@ -57,5 +59,14 @@ public class PresentController {
     @GetMapping(value = "/course/{courseId}")
     public ResultVo course(@PathVariable(value = "courseId") int courseId) {
         return ResultUtil.success(presentService.listByCourse(courseId));
+     }
+
+     * 根据用户id获取考勤信息
+     * @param userId
+     * @return
+     */
+    @GetMapping(value = "/list")
+    public ResultVo listCourse(@RequestParam(value = "userId") int userId){
+        return ResultUtil.success(presentService.listByUserId(userId));
     }
 }
