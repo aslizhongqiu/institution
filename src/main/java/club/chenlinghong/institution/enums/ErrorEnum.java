@@ -35,6 +35,7 @@ public enum ErrorEnum {
     FILE_STREAM_CREATE_ERROR(2006, "文件流创建错误"),
     UNKNOWN_ERROR(2007, "未知错误"),
     DELETE_ERROR(2008, "删除失败"),
+    INSERT_ERROR(2009, "插入失败"),
 
     /**
      * 3XXX 用户相关错误
