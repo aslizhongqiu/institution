@@ -1,5 +1,6 @@
 package club.chenlinghong.institution.repository.dao;
 
+import club.chenlinghong.institution.api.vo.PresentVo;
 import club.chenlinghong.institution.api.vo.PresentVO;
 import club.chenlinghong.institution.repository.domain.Present;
 
@@ -12,10 +13,13 @@ import java.util.List;
  */
 public interface PresentDao extends IBaseDao<Present> {
 
+    List<PresentVo> listByCourse(int courseId);
+
     /**
      * 根据学生id获取考勤里的课程信息列表
      * @param userId
      * @return
      */
     List<PresentVO> getByUserId(int userId);
+
 }

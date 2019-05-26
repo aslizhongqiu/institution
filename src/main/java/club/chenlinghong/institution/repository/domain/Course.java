@@ -17,7 +17,6 @@ public class Course extends BaseDomain {
 
     private static final long serialVersionUID = 8737044684878791107L;
 
-
     /**
      * 课程类型Id
      */

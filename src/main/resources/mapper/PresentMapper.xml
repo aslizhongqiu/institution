@@ -13,6 +13,13 @@
         <result column="user_id" property="userId" jdbcType="INTEGER" javaType="int"/>
         <result column="attend" property="attend" jdbcType="INTEGER" javaType="int"/>
     </resultMap>
+    <resultMap id="presentVo" type="club.chenlinghong.institution.api.vo.PresentVo">
+        <result column="user_id" property="userId" jdbcType="INTEGER" javaType="int"/>
+        <association property="user" column="user_id"
+                     javaType="club.chenlinghong.institution.repository.domain.User"
+                     select="club.chenlinghong.institution.repository.dao.UserDao.getById">
+        </association>
+    </resultMap>
 
     <resultMap id="VoResultMap" type="club.chenlinghong.institution.api.vo.PresentVO" >
         <result column="course_id" property="courseId" jdbcType="INTEGER" javaType="int"/>
@@ -84,6 +91,16 @@
         present
         where deleted = "0"
     </select>
+
+    <select id="listByCourse" resultMap="presentVo">
+        select distinct user_id
+        from (
+        select user_id from present where course_id=#{courseId} and deleted="0"
+        union
+        select user_id from advance where course_id=#{courseId} and deleted="0"
+        ) t
+    </select>
+
 
     <select id="getByUserId" parameterType="INTEGER" resultMap="VoResultMap">
         SELECT
