@@ -61,4 +61,9 @@ public class PresentServiceImpl implements PresentService {
         return presentDao.update(present);
 
     }
+
+    @Override
+    public PageDto listByCourse(int courseId) {
+        return new PageDto(presentDao.listByCourse(courseId));
+    }
 }

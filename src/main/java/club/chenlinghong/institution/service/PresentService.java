@@ -1,5 +1,6 @@
 package club.chenlinghong.institution.service;
 
+import club.chenlinghong.institution.common.PageDto;
 import club.chenlinghong.institution.repository.domain.Present;
 
 /**
@@ -8,4 +9,12 @@ import club.chenlinghong.institution.repository.domain.Present;
  * @Description:
  */
 public interface PresentService extends IBaseService<Present> {
+
+    /**
+     * 获取考勤列表
+     *
+     * @param courseId
+     * @return
+     */
+    PageDto listByCourse(int courseId);
 }

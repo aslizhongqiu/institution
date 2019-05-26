@@ -77,4 +77,5 @@ public class CourseController {
         return ResultUtil.success(courseService.getByTeacherId(userId));
     }
 
+
 }

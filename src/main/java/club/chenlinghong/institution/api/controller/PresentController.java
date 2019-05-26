@@ -9,6 +9,8 @@ import club.chenlinghong.institution.service.PresentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,8 +32,8 @@ public class PresentController {
     private PresentService presentService;
 
     @PostMapping(value = "/present")
-    public ResultVo insert(@Valid Present present, BindingResult bindingResult){
-        if (bindingResult.hasErrors()){
+    public ResultVo insert(@Valid Present present, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             log.error("PresentController#insert: param is illegal. present=[{}].", present);
             throw new InstitutionException(ErrorEnum.PARAM_ILLEGAL);
         }
@@ -39,10 +41,21 @@ public class PresentController {
         /**
          * 校驗結果
          */
-        if(result != 1){
+        if (result != 1) {
             log.error("PresentController#insert: failed to insert. present=[{}]", present);
             throw new InstitutionException(ErrorEnum.INSERT_ERROR);
         }
         return ResultUtil.success();
+    }
+
+    /**
+     * 获取该课程的考勤记录
+     *
+     * @param courseId
+     * @return
+     */
+    @GetMapping(value = "/course/{courseId}")
+    public ResultVo course(@PathVariable(value = "courseId") int courseId) {
+        return ResultUtil.success(presentService.listByCourse(courseId));
     }
 }
