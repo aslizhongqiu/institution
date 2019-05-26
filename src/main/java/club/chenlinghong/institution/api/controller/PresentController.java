@@ -9,9 +9,7 @@ import club.chenlinghong.institution.service.PresentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -44,5 +42,15 @@ public class PresentController {
             throw new InstitutionException(ErrorEnum.INSERT_ERROR);
         }
         return ResultUtil.success();
+    }
+
+    /**
+     * 根据用户id获取考勤信息
+     * @param userId
+     * @return
+     */
+    @GetMapping(value = "/list")
+    public ResultVo listCourse(@RequestParam(value = "userId") int userId){
+        return ResultUtil.success(presentService.listByUserId(userId));
     }
 }

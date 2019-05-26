@@ -1,6 +1,9 @@
 package club.chenlinghong.institution.repository.dao;
 
+import club.chenlinghong.institution.api.vo.PresentVO;
 import club.chenlinghong.institution.repository.domain.Present;
+
+import java.util.List;
 
 /**
  * @Auther: lizhongqiu
@@ -8,4 +11,11 @@ import club.chenlinghong.institution.repository.domain.Present;
  * @Description:
  */
 public interface PresentDao extends IBaseDao<Present> {
+
+    /**
+     * 根据学生id获取考勤里的课程信息列表
+     * @param userId
+     * @return
+     */
+    List<PresentVO> getByUserId(int userId);
 }

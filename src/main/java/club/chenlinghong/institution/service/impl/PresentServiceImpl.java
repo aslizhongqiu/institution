@@ -1,5 +1,6 @@
 package club.chenlinghong.institution.service.impl;
 
+import club.chenlinghong.institution.api.vo.PresentVO;
 import club.chenlinghong.institution.common.PageDto;
 import club.chenlinghong.institution.enums.ErrorEnum;
 import club.chenlinghong.institution.exception.InstitutionException;
@@ -10,7 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -60,5 +60,10 @@ public class PresentServiceImpl implements PresentService {
         }
         return presentDao.update(present);
 
+    }
+
+    @Override
+    public List<PresentVO> listByUserId(int userId) {
+        return presentDao.getByUserId(userId);
     }
 }

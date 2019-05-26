@@ -14,6 +14,16 @@
         <result column="attend" property="attend" jdbcType="INTEGER" javaType="int"/>
     </resultMap>
 
+    <resultMap id="VoResultMap" type="club.chenlinghong.institution.api.vo.PresentVO" >
+        <result column="course_id" property="courseId" jdbcType="INTEGER" javaType="int"/>
+        <result column="counts" property="count" jdbcType="INTEGER" javaType="int"/>
+        <association property="course" column="course_id"
+                     javaType="club.chenlinghong.institution.repository.domain.Course"
+                     select="club.chenlinghong.institution.repository.dao.CourseDao.getById">
+        </association>
+
+    </resultMap>
+
     <sql id="Base_Column_List">
         gmt_create, gmt_modified, deleted, `course_id`, `user_id`, `attend`
     </sql>
@@ -73,6 +83,15 @@
         FROM
         present
         where deleted = "0"
+    </select>
+
+    <select id="getByUserId" parameterType="INTEGER" resultMap="VoResultMap">
+        SELECT
+        course_id,count(id) counts
+        FROM
+        present
+        where user_id=#{userId} and deleted = "0"
+        group by course_id;
     </select>
 
     <update id="update" parameterType="club.chenlinghong.institution.repository.domain.Present">
