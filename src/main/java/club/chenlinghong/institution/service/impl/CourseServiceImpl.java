@@ -3,10 +3,13 @@ package club.chenlinghong.institution.service.impl;
 import club.chenlinghong.institution.common.PageDto;
 import club.chenlinghong.institution.repository.dao.CourseDao;
 import club.chenlinghong.institution.repository.domain.Course;
+import club.chenlinghong.institution.repository.domain.User;
 import club.chenlinghong.institution.service.CourseService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @Auther: lizhongqiu
@@ -18,7 +21,7 @@ import org.springframework.stereotype.Service;
 public class CourseServiceImpl implements CourseService {
 
     @Autowired
-    CourseDao courseDao;
+    private CourseDao courseDao;
 
     @Override
     public int insert(Course course) {
@@ -44,5 +47,12 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public int update(Course course) {
         return courseDao.update(course);
+    }
+
+    @Override
+    public PageDto<Course> getByTeacherId(int userId) {
+        List<Course> courseList=courseDao.getByTeacherId(userId);
+        int total=courseDao.teacherTotal(userId);
+        return new PageDto<>(courseList,1,10,total);
     }
 }

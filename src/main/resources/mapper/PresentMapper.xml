@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="club.chenlinghong.institution.repository.dao.PresentDao">
+
+    <resultMap id="BaseResultMap" type="club.chenlinghong.institution.repository.domain.Present">
+        <id column="id" property="id" jdbcType="INTEGER" javaType="int"/>
+        <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" javaType="Date"/>
+        <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" javaType="Date"/>
+        <result column="deleted" property="deleted" jdbcType="VARCHAR" javaType="Integer"/>
+        <result column="course_id" property="courseId" jdbcType="INTEGER" javaType="int"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER" javaType="int"/>
+        <result column="attend" property="attend" jdbcType="INTEGER" javaType="int"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        gmt_create, gmt_modified, deleted, `course_id`, `user_id`, `attend`
+    </sql>
+
+    <sql id="column_list">
+        `id`, <include refid="Base_Column_List"></include>
+    </sql>
+
+    <sql id="default_value">
+        current_timestamp , current_timestamp , "0"
+    </sql>
+
+    <insert id="insert" parameterType="club.chenlinghong.institution.repository.domain.Present">
+        <selectKey keyProperty="id" order="AFTER" resultType="int">
+            SELECT last_insert_id()
+        </selectKey>
+        INSERT into
+        present(<include refid="Base_Column_List"></include>)
+        values(<include refid="default_value"></include>, #{courseId}, #{userId}, #{attend})
+    </insert>
+
+    <update id="deleteById" parameterType="int">
+        update present
+        set deleted = '1'
+        where id = #{id}
+    </update>
+
+    <select id="getById" parameterType="Integer" resultMap="BaseResultMap">
+        SELECT
+        <include refid="column_list"/>
+        FROM
+        present
+        WHERE
+        id=#{id} and deleted = "0"
+    </select>
+
+    <select id="listAll" resultMap="BaseResultMap">
+        SELECT
+        <include refid="column_list"/>
+        FROM
+        present
+        where deleted = "0"
+        order by id desc
+        <choose>
+            <when test="offset != null and rows != null">
+                limit #{offset},#{rows}
+            </when>
+            <otherwise>
+                limit 0,10
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="count" resultType="int">
+        SELECT
+        count(*)
+        FROM
+        present
+        where deleted = "0"
+    </select>
+
+    <update id="update" parameterType="club.chenlinghong.institution.repository.domain.Present">
+        update present
+        set `course_id`       = #{courseId},
+        `user_id`       = #{userId},
+        `attend`       = #{attend},
+            gmt_modified = current_timestamp
+        where id = #{id}
+    </update>
+
+</mapper>
