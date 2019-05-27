@@ -61,7 +61,7 @@ public class PresentController {
         return ResultUtil.success(presentService.listByCourse(courseId));
      }
 
-     * 根据用户id获取考勤信息
+     /* 根据用户id获取考勤信息
      * @param userId
      * @return
      */

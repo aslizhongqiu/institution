@@ -2,37 +2,28 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="club.chenlinghong.institution.repository.dao.PresentDao">
+<mapper namespace="club.chenlinghong.institution.repository.dao.SettlementDao">
 
-    <resultMap id="BaseResultMap" type="club.chenlinghong.institution.repository.domain.Present">
+    <resultMap id="BaseResultMap" type="club.chenlinghong.institution.repository.domain.Settlement">
         <id column="id" property="id" jdbcType="INTEGER" javaType="int"/>
         <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" javaType="Date"/>
         <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" javaType="Date"/>
         <result column="deleted" property="deleted" jdbcType="VARCHAR" javaType="Integer"/>
         <result column="course_id" property="courseId" jdbcType="INTEGER" javaType="int"/>
         <result column="user_id" property="userId" jdbcType="INTEGER" javaType="int"/>
-        <result column="attend" property="attend" jdbcType="INTEGER" javaType="int"/>
-    </resultMap>
-    <resultMap id="presentVo" type="club.chenlinghong.institution.api.vo.PresentVo">
-        <result column="user_id" property="userId" jdbcType="INTEGER" javaType="int"/>
+        <result column="money" property="money" jdbcType="INTEGER" javaType="int"/>
+        <association property="course" column="course_id"
+                     javaType="club.chenlinghong.institution.repository.domain.Course"
+                     select="club.chenlinghong.institution.repository.dao.CourseDao.getById">
+        </association>
         <association property="user" column="user_id"
                      javaType="club.chenlinghong.institution.repository.domain.User"
                      select="club.chenlinghong.institution.repository.dao.UserDao.getById">
         </association>
     </resultMap>
 
-    <resultMap id="VoResultMap" type="club.chenlinghong.institution.api.vo.RecordVo" >
-        <result column="course_id" property="courseId" jdbcType="INTEGER" javaType="int"/>
-        <result column="counts" property="count" jdbcType="INTEGER" javaType="int"/>
-        <association property="course" column="course_id"
-                     javaType="club.chenlinghong.institution.repository.domain.Course"
-                     select="club.chenlinghong.institution.repository.dao.CourseDao.getById">
-        </association>
-
-    </resultMap>
-
     <sql id="Base_Column_List">
-        gmt_create, gmt_modified, deleted, `course_id`, `user_id`, `attend`
+        gmt_create, gmt_modified, deleted, course_id,user_id,money
     </sql>
 
     <sql id="column_list">
@@ -43,17 +34,17 @@
         current_timestamp , current_timestamp , "0"
     </sql>
 
-    <insert id="insert" parameterType="club.chenlinghong.institution.repository.domain.Present">
+    <insert id="insert" parameterType="club.chenlinghong.institution.repository.domain.Settlement">
         <selectKey keyProperty="id" order="AFTER" resultType="int">
             SELECT last_insert_id()
         </selectKey>
         INSERT into
-        present(<include refid="Base_Column_List"></include>)
-        values(<include refid="default_value"></include>, #{courseId}, #{userId}, #{attend})
+        settlement(<include refid="Base_Column_List"></include>)
+        values(<include refid="default_value"></include>, #{courseId}, #{userId},#{money})
     </insert>
 
     <update id="deleteById" parameterType="int">
-        update present
+        update settlement
         set deleted = '1'
         where id = #{id}
     </update>
@@ -62,7 +53,7 @@
         SELECT
         <include refid="column_list"/>
         FROM
-        present
+        settlement
         WHERE
         id=#{id} and deleted = "0"
     </select>
@@ -71,7 +62,7 @@
         SELECT
         <include refid="column_list"/>
         FROM
-        present
+        settlement
         where deleted = "0"
         order by id desc
         <choose>
@@ -88,36 +79,45 @@
         SELECT
         count(*)
         FROM
-        present
+        advance
         where deleted = "0"
     </select>
 
-    <select id="listByCourse" resultMap="presentVo">
-        select distinct user_id
-        from (
-        select user_id from present where course_id=#{courseId} and deleted="0"
-        union
-        select user_id from advance where course_id=#{courseId} and deleted="0"
-        ) t
-    </select>
-
-
-    <select id="getByUserId" parameterType="INTEGER" resultMap="VoResultMap">
-        SELECT
-        course_id,count(id) counts
-        FROM
-        present
-        where user_id=#{userId} and deleted = "0"
-        group by course_id;
-    </select>
-
-    <update id="update" parameterType="club.chenlinghong.institution.repository.domain.Present">
-        update present
-        set `course_id`       = #{courseId},
-        `user_id`       = #{userId},
-        `attend`       = #{attend},
-            gmt_modified = current_timestamp
+    <update id="update" parameterType="club.chenlinghong.institution.repository.domain.Settlement">
+        update settlement
+        set
+            gmt_modified = current_timestamp,
+            course_id = #{courseId},
+            user_id = #{userId},
+            money = #{money}
         where id = #{id}
     </update>
+
+    <select id="listByUserId" parameterType="Integer" resultMap="BaseResultMap">
+        SELECT
+        <include refid="column_list"/>
+        FROM
+        settlement
+        WHERE
+        user_id=#{userId} and deleted = "0"
+    </select>
+
+    <select id="listByCourseId" parameterType="Integer" resultMap="BaseResultMap">
+        SELECT
+        <include refid="column_list"/>
+        FROM
+        settlement
+        WHERE
+        course_id=#{courseId} and deleted = "0"
+    </select>
+
+    <select id="listUserCourse" parameterType="INTEGER" resultMap="BaseResultMap">
+        SELECT
+        <include refid="column_list"/>
+        FROM
+        settlement
+        WHERE
+        course_id=#{courseId} and user_id=#{userId} and deleted = "0"
+    </select>
 
 </mapper>

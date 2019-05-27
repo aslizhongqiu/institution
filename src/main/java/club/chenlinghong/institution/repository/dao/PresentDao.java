@@ -1,7 +1,8 @@
 package club.chenlinghong.institution.repository.dao;
 
 import club.chenlinghong.institution.api.vo.PresentVo;
-import club.chenlinghong.institution.api.vo.PresentVO;
+
+import club.chenlinghong.institution.api.vo.RecordVo;
 import club.chenlinghong.institution.repository.domain.Present;
 
 import java.util.List;
@@ -20,6 +21,6 @@ public interface PresentDao extends IBaseDao<Present> {
      * @param userId
      * @return
      */
-    List<PresentVO> getByUserId(int userId);
+    List<RecordVo> getByUserId(int userId);
 
 }

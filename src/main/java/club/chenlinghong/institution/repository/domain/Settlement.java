@@ -4,22 +4,24 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * @Auther: lizhongqiu
- * @Date: 2019/5/23 17:41
+ * @Date: 2019/5/27 09:39
  * @Description:
  */
-
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class Advance extends BaseDomain{
+@AllArgsConstructor
+public class Settlement  extends BaseDomain {
 
-    private static final long serialVersionUID = 8369559285414469224L;
+    private static final long serialVersionUID = -7857588835443474722L;
 
     /**
      * 关联课程ID
      */
+    @NotNull(message = "课程id不能为空")
     private int courseId;
 
     /**
@@ -28,22 +30,19 @@ public class Advance extends BaseDomain{
     private Course course;
 
     /**
-     * 预交用户ID
+     * 结算ID
      */
+    @NotNull(message = "结算人的id不能为空")
     private int userId;
 
     /**
-     * 预交用户
+     * 请假用户
      */
     private User user;
 
     /**
-     * 预交金额
+     * 结算金额
      */
     private int money;
 
-    /**
-     * 预交发票号
-     */
-    private String number;
 }

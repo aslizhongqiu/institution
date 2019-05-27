@@ -1,6 +1,7 @@
 package club.chenlinghong.institution.service.impl;
 
-import club.chenlinghong.institution.api.vo.PresentVO;
+import club.chenlinghong.institution.api.vo.PresentVo;
+import club.chenlinghong.institution.api.vo.RecordVo;
 import club.chenlinghong.institution.common.PageDto;
 import club.chenlinghong.institution.enums.ErrorEnum;
 import club.chenlinghong.institution.exception.InstitutionException;
@@ -68,7 +69,7 @@ public class PresentServiceImpl implements PresentService {
         return new PageDto(presentDao.listByCourse(courseId));
 }
     @Override
-    public List<PresentVO> listByUserId(int userId) {
+    public List<RecordVo> listByUserId(int userId) {
         return presentDao.getByUserId(userId);
 
     }
