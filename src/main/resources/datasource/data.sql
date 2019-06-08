@@ -21,3 +21,9 @@ insert into user_type (gmt_create,gmt_modified,deleted,name)values(current_times
 insert into `user` (gmt_create,gmt_modified,deleted,name,password,type_id)values(current_timestamp ,current_timestamp ,'0','李中秋','123456',520);
 insert into `user` (gmt_create,gmt_modified,deleted,name,password,type_id)values(current_timestamp ,current_timestamp ,'0','王俊懿','123456',521);
 insert into `user` (gmt_create,gmt_modified,deleted,name,password,type_id)values(current_timestamp ,current_timestamp ,'0','贾成连','123456',522);
+insert into `user` (gmt_create,gmt_modified,deleted,name,password,type_id)values(current_timestamp ,current_timestamp ,'0','吴磊','123456',522);
+insert into `user` (gmt_create,gmt_modified,deleted,name,password,type_id)values(current_timestamp ,current_timestamp ,'0','孙悟空','123456',522);
+insert into `user` (gmt_create,gmt_modified,deleted,name,password,type_id)values(current_timestamp ,current_timestamp ,'0','唐僧','123456',522);
+insert into `user` (gmt_create,gmt_modified,deleted,name,password,type_id)values(current_timestamp ,current_timestamp ,'0','猪八戒','123456',522);
+insert into `user` (gmt_create,gmt_modified,deleted,name,password,type_id)values(current_timestamp ,current_timestamp ,'0','沙悟净','123456',522);
+insert into `user` (gmt_create,gmt_modified,deleted,name,password,type_id)values(current_timestamp ,current_timestamp ,'0','光头强','123456',522);

@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * @Description 用户信息
  * @Author chenlinghong
@@ -20,16 +22,19 @@ public class User extends BaseDomain {
     /**
      * 名称
      */
+    @NotNull(message = "用户名不能为空")
     private String name;
 
     /**
      * 密码
      */
+    @NotNull(message = "密码不能为空")
     private String password;
 
     /**
      * 用户类型Id
      */
+    @NotNull(message = "用户类型不能为空")
     private int typeId;
 
     private UserType userType;
