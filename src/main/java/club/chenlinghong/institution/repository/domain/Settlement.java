@@ -36,7 +36,7 @@ public class Settlement  extends BaseDomain {
     private int userId;
 
     /**
-     * 请假用户
+     * 用户
      */
     private User user;
 

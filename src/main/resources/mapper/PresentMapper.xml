@@ -98,7 +98,16 @@
         select user_id from present where course_id=#{courseId} and deleted="0"
         union
         select user_id from advance where course_id=#{courseId} and deleted="0"
-        ) t
+        )
+    </select>
+
+    <select id="listAllPresent"  parameterType="INTEGER"  resultMap="BaseResultMap">
+        SELECT
+        <include refid="column_list"/>
+        FROM
+        present
+        where deleted = "0" and course_id=#{courseId}
+        order by id desc
     </select>
 
 

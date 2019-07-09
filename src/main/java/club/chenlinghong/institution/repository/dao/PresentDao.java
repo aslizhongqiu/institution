@@ -23,4 +23,11 @@ public interface PresentDao extends IBaseDao<Present> {
      */
     List<RecordVo> getByUserId(int userId);
 
+    /**
+     * 根据课程id获取所有考勤记录
+     * @param courseId
+     * @return
+     */
+    List<Present> listAllPresent(int courseId);
+
 }
