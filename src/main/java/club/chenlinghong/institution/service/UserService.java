@@ -17,4 +17,12 @@ public interface UserService extends IBaseService<User> {
      * @return
      */
     PageDto<User> listTeacher(int pageNo, int pageSize);
+
+    /**
+     * 根据用户id修改用户类型
+     * @param id
+     * @param typeId
+     * @return
+     */
+    int updateType(int id,int typeId);
 }

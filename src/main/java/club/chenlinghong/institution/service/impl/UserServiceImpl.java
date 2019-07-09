@@ -26,6 +26,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserTypeService userTypeService;
 
+
     @Override
     public int insert(User user) {
         int userTypeId=user.getTypeId();
@@ -68,5 +69,11 @@ public class UserServiceImpl implements UserService {
             totalCount = userDao.countTeacher();
         }
         return new PageDto<>(domainList, pageNo, pageSize, totalCount);
+    }
+
+    @Override
+    public int updateType(int id, int typeId) {
+        return userDao.updateType(id,typeId);
+
     }
 }

@@ -111,5 +111,12 @@
         where id = #{id}
     </update>
 
+    <update id="updateType" parameterType="club.chenlinghong.institution.repository.domain.User">
+        update user
+        set `type_id`       = #{typeId},
+            gmt_modified = current_timestamp
+        where id = #{id}
+    </update>
+
 
 </mapper>

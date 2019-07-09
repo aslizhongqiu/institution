@@ -3,6 +3,7 @@ package club.chenlinghong.institution.api.controller;
 import club.chenlinghong.institution.common.ResultUtil;
 import club.chenlinghong.institution.common.ResultVo;
 import club.chenlinghong.institution.enums.ErrorEnum;
+import club.chenlinghong.institution.enums.UserTypeEnum;
 import club.chenlinghong.institution.exception.InstitutionException;
 import club.chenlinghong.institution.service.UserService;
 import club.chenlinghong.institution.service.UserTypeService;
@@ -79,6 +80,39 @@ public class UserController {
             throw new InstitutionException(ErrorEnum.PARAM_ILLEGAL);
         }
         return ResultUtil.success(userService.listTeacher(pageNo, pageSize));
+    }
+
+    /**
+     * 根据用户id修改用户类型
+     * @param id 用户id
+     * @param typeId 用户类型
+     * @return
+     */
+    @PostMapping(value = "type")
+    public ResultVo modifyType(@RequestParam(value = "id") int id,
+                               @RequestParam(value = "typeId")int typeId){
+        if(id==0||typeId==0){
+            throw new InstitutionException(ErrorEnum.PARAM_IS_NULL);
+        }
+        if (userTypeService.getById(typeId)==null){
+            throw new InstitutionException(ErrorEnum.PARAM_ILLEGAL);
+        }
+        User user=userService.getById(id);
+        if (user==null){
+            throw new InstitutionException(ErrorEnum.NO_USER);
+        }
+        else {
+            int type=user.getTypeId();
+            if(type==522||type==523){
+                user.setTypeId(typeId);
+                userService.updateType(id,typeId);
+            }
+            else{
+                throw new InstitutionException(ErrorEnum.PARAM_ILLEGAL);
+            }
+
+        }
+        return ResultUtil.success();
     }
 
 }

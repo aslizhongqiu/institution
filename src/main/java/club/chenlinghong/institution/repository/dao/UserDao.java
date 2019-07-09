@@ -27,4 +27,12 @@ public interface UserDao extends IBaseDao<User> {
      */
     int countTeacher();
 
+    /**
+     * 更新用户类型
+     * @param id
+     * @param typeId
+     * @return
+     */
+    int updateType(@Param("id")int id,@Param("typeId")int typeId);
+
 }

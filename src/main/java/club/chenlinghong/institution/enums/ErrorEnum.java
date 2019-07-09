@@ -40,7 +40,7 @@ public enum ErrorEnum {
     /**
      * 3XXX 用户相关错误
      */
-    NO_USER(3000, "用户不存在或未登录"),
+    NO_USER(3000, "用户不存在"),
     PASSWORD_IS_ERROR(3001, "密码不正确"),
     INSERT_USER_ERROR(3002, "新增用户失败"),
     UPDATE_USER_ERROR(3003, "更新用户信息失败"),

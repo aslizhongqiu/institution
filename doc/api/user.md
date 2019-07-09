@@ -54,3 +54,11 @@
        
 返回： 
 
+#### 四、设置星标学生(修改学生类型)
+
+     POST /institution/user/type
+     
+参数：
+
+    id(int) :用户id 【必填】，
+    typeId(int):类型id 【必填】
