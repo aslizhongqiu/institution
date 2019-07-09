@@ -4,10 +4,9 @@ import club.chenlinghong.institution.common.ResultUtil;
 import club.chenlinghong.institution.common.ResultVo;
 import club.chenlinghong.institution.enums.ErrorEnum;
 import club.chenlinghong.institution.exception.InstitutionException;
-import club.chenlinghong.institution.repository.domain.Present;
-import club.chenlinghong.institution.repository.domain.User;
 import club.chenlinghong.institution.service.UserService;
 import club.chenlinghong.institution.service.UserTypeService;
+import club.chenlinghong.institution.repository.domain.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -48,14 +47,38 @@ public class UserController {
      * @param pageSize
      * @return
      */
-    @GetMapping(value = "/all")
-    public ResultVo listAll(@RequestParam(value = "pageNo", required = false, defaultValue = "1") int pageNo,
+    @GetMapping(value = "type/all")
+    public ResultVo typeistAll(@RequestParam(value = "pageNo", required = false, defaultValue = "1") int pageNo,
                             @RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize) {
         if (pageNo < 0 || pageSize < 0) {
             log.error("TestController#listAll: param is illegal. pageNo={}, pageSize={}.", pageNo, pageSize);
             throw new InstitutionException(ErrorEnum.PARAM_ILLEGAL);
         }
         return ResultUtil.success(userTypeService.listAll(pageNo, pageSize));
+    }
+
+    /**
+     * 分页获取所有用户
+     * @param pageNo
+     * @param pageSize
+     * @return
+     */
+    @GetMapping(value = "all")
+    public ResultVo listAll(@RequestParam(value = "pageNo", required = false, defaultValue = "1") int pageNo,
+                            @RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize) {
+        if (pageNo < 1|| pageSize < 0) {
+            throw new InstitutionException(ErrorEnum.PARAM_ILLEGAL);
+        }
+        return ResultUtil.success(userService.listAll(pageNo, pageSize));
+    }
+
+    @GetMapping(value = "teacher")
+    public ResultVo listTeacher(@RequestParam(value = "pageNo", required = false, defaultValue = "1") int pageNo,
+                            @RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize) {
+        if (pageNo < 1|| pageSize < 0) {
+            throw new InstitutionException(ErrorEnum.PARAM_ILLEGAL);
+        }
+        return ResultUtil.success(userService.listTeacher(pageNo, pageSize));
     }
 
 }

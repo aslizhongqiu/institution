@@ -1,6 +1,5 @@
 package club.chenlinghong.institution.repository.domain;
 
-import com.sun.xml.internal.ws.api.model.MEP;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

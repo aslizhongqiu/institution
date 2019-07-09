@@ -1,6 +1,6 @@
 package club.chenlinghong.institution.api.vo;
 
-import club.chenlinghong.institution.repository.domain.Course;
+import club.chenlinghong.institution.repository.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,29 +8,20 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
- * @Auther: lizhongqiu
- * @Date: 2019/5/26 22:21
- * @Description:考勤类的页面对象
+ * @Description TODO
+ * @Author lizhongqiu
+ * @Date 2019/5/26 22:45
+ * @Version V1.0
  */
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class PresentVO  implements Serializable {
+@AllArgsConstructor
+public class PresentVo implements Serializable {
 
-    private static final long serialVersionUID = -3808068968143392839L;
+    private static final long serialVersionUID = -1398252479547674902L;
 
-    /**
-     * 课程id
-     */
-    private int courseId;
+    private int userId;
 
-    /**
-     * 课程详情
-     */
-    private Course course;
+    private User user;
 
-    /**
-     * 考勤次数
-     */
-    private int count;
 }

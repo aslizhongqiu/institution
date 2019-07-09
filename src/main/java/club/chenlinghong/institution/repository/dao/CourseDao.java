@@ -21,4 +21,5 @@ public interface CourseDao extends IBaseDao<Course> {
     int teacherTotal(int userId);
 
 
+
 }

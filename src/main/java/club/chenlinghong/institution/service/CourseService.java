@@ -3,9 +3,6 @@ package club.chenlinghong.institution.service;
 import club.chenlinghong.institution.common.PageDto;
 import club.chenlinghong.institution.repository.domain.Course;
 
-import java.awt.*;
-import java.util.List;
-
 /**
  * @Description 课程Service接口
  * @Author lizhongqiu

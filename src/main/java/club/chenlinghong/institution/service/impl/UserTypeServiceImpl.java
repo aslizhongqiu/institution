@@ -1,8 +1,7 @@
 package club.chenlinghong.institution.service.impl;
 
-import club.chenlinghong.institution.common.PageDto;
 import club.chenlinghong.institution.repository.dao.UserTypeDao;
-import club.chenlinghong.institution.repository.domain.User;
+import club.chenlinghong.institution.common.PageDto;
 import club.chenlinghong.institution.repository.domain.UserType;
 import club.chenlinghong.institution.service.UserTypeService;
 import lombok.NonNull;

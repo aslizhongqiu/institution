@@ -1,6 +1,5 @@
 package club.chenlinghong.institution.service;
 
-import club.chenlinghong.institution.repository.dao.IBaseDao;
 import club.chenlinghong.institution.repository.domain.Leave;
 
 /**

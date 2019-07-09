@@ -1,9 +1,8 @@
 package club.chenlinghong.institution.service.impl;
 
-import club.chenlinghong.institution.common.PageDto;
 import club.chenlinghong.institution.repository.dao.CourseDao;
+import club.chenlinghong.institution.common.PageDto;
 import club.chenlinghong.institution.repository.domain.Course;
-import club.chenlinghong.institution.repository.domain.User;
 import club.chenlinghong.institution.service.CourseService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +39,12 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public PageDto<Course> listAll(int pageNo, int pageSize) {
-        //TODO
-        return null;
+        List<Course> domainList =courseDao .listAll((pageNo - 1) * pageSize, pageSize);
+        int totalCount = 0;
+        if (domainList != null && domainList.size() > 0) {
+            totalCount = courseDao.count();
+        }
+        return new PageDto<>(domainList, pageNo, pageSize, totalCount);
     }
 
     @Override

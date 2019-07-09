@@ -1,6 +1,5 @@
 package club.chenlinghong.institution.repository.dao;
 
-import club.chenlinghong.institution.repository.domain.Advance;
 import club.chenlinghong.institution.repository.domain.Settlement;
 import org.apache.ibatis.annotations.Param;
 

@@ -2,7 +2,6 @@ package club.chenlinghong.institution.repository.dao;
 
 
 import club.chenlinghong.institution.repository.domain.Advance;
-import org.aopalliance.aop.Advice;
 
 import java.util.List;
 

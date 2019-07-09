@@ -1,6 +1,5 @@
 package club.chenlinghong.institution.api.controller;
 
-import club.chenlinghong.institution.api.vo.RecordVo;
 import club.chenlinghong.institution.common.ResultUtil;
 import club.chenlinghong.institution.common.ResultVo;
 import club.chenlinghong.institution.enums.ErrorEnum;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * @Auther: lizhongqiu
  * @Date: 2019/5/27 12:22
- * @Description:
+ * @Description:课时结算Controller
  */
 @Slf4j
 @RestController

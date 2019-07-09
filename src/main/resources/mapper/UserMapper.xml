@@ -59,7 +59,24 @@
         <include refid="column_list"/>
         FROM
         user
-        where deleted = "0"
+        where deleted = "0" and type_id=522 or type_id=523
+        order by id desc
+        <choose>
+            <when test="offset != null and rows != null">
+                limit #{offset},#{rows}
+            </when>
+            <otherwise>
+                limit 0,10
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="listTeacher" resultMap="BaseResultMap">
+        SELECT
+        <include refid="column_list"/>
+        FROM
+        user
+        where deleted = "0" and type_id=520
         order by id desc
         <choose>
             <when test="offset != null and rows != null">
@@ -76,7 +93,15 @@
         count(*)
         FROM
         user
-        where deleted = "0"
+        where deleted = "0" and type_id=522 or type_id=523
+    </select>
+
+    <select id="countTeacher" resultType="int">
+        SELECT
+        count(*)
+        FROM
+        user
+        where deleted = "0" and type_id=520
     </select>
 
     <update id="update" parameterType="club.chenlinghong.institution.repository.domain.User">
@@ -85,5 +110,6 @@
             gmt_modified = current_timestamp
         where id = #{id}
     </update>
+
 
 </mapper>

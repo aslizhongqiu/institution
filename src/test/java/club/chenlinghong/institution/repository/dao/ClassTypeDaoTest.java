@@ -1,7 +1,6 @@
 package club.chenlinghong.institution.repository.dao;
 
 import club.chenlinghong.institution.repository.domain.ClassType;
-import club.chenlinghong.institution.repository.domain.CourseType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

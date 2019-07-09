@@ -1,6 +1,6 @@
 package club.chenlinghong.institution.service;
 
-import club.chenlinghong.institution.repository.dao.UserDao;
+import club.chenlinghong.institution.common.PageDto;
 import club.chenlinghong.institution.repository.domain.User;
 
 /**
@@ -10,4 +10,11 @@ import club.chenlinghong.institution.repository.domain.User;
  */
 public interface UserService extends IBaseService<User> {
 
+    /**
+     * 获取所有老师
+     * @param pageNo
+     * @param pageSize
+     * @return
+     */
+    PageDto<User> listTeacher(int pageNo, int pageSize);
 }

@@ -20,7 +20,7 @@ public class UserTypeDaoTest {
 
     @Test
     public void insert() {
-        UserType type = new UserType("管理员");
+        UserType type = new UserType("学生");
         int result = typeDao.insert(type);
         assertEquals(1, result);
     }

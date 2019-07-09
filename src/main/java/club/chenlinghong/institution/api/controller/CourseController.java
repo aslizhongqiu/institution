@@ -4,8 +4,8 @@ import club.chenlinghong.institution.common.ResultUtil;
 import club.chenlinghong.institution.common.ResultVo;
 import club.chenlinghong.institution.enums.ErrorEnum;
 import club.chenlinghong.institution.exception.InstitutionException;
-import club.chenlinghong.institution.repository.domain.Course;
 import club.chenlinghong.institution.service.CourseService;
+import club.chenlinghong.institution.repository.domain.Course;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -77,5 +77,19 @@ public class CourseController {
         return ResultUtil.success(courseService.getByTeacherId(userId));
     }
 
+    /**
+     * 获取所有课程
+     * @param pageNo
+     * @param pageSize
+     * @return
+     */
+    @GetMapping("/all")
+    public ResultVo listAll(@RequestParam(value = "pageNo", required = false, defaultValue = "1") int pageNo,
+                            @RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize){
+        if (pageNo < 1 || pageSize < 0) {
+            throw new InstitutionException(ErrorEnum.PARAM_ILLEGAL);
+        }
+        return ResultUtil.success(courseService.listAll(pageNo,pageSize));
+    }
 
 }

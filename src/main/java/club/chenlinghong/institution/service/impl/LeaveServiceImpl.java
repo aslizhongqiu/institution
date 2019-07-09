@@ -1,12 +1,11 @@
 package club.chenlinghong.institution.service.impl;
 
-import club.chenlinghong.institution.common.PageDto;
-import club.chenlinghong.institution.enums.ErrorEnum;
 import club.chenlinghong.institution.exception.InstitutionException;
 import club.chenlinghong.institution.repository.dao.LeaveDao;
+import club.chenlinghong.institution.common.PageDto;
+import club.chenlinghong.institution.enums.ErrorEnum;
 import club.chenlinghong.institution.repository.domain.Leave;
 import club.chenlinghong.institution.service.LeaveService;
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
